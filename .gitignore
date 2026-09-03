@@ -4,3 +4,7 @@ bin/
 build/
 __pycache__/
 .env
+.env.*
+!.env.example
+node_modules/
+dist/
