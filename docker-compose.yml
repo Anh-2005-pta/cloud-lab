@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: ./server
+    container_name: mern-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=${MONGODB_URI:?Set MONGODB_URI in .env}
+    networks:
+      - mern-network
+
+  frontend:
+    build: ./client
+    container_name: mern-frontend
+    ports:
+      - "5173:80"
+    networks:
+      - mern-network
+    depends_on:
+      - backend
+
+networks:
+  mern-network:
+    driver: bridge
