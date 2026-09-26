@@ -1,7 +1,8 @@
+name: cloud-lab04
+
 services:
   backend:
     build: ./server
-    container_name: mern-backend
     ports:
       - "5000:5000"
     environment:
@@ -12,7 +13,6 @@ services:
 
   frontend:
     build: ./client
-    container_name: mern-frontend
     ports:
       - "5173:80"
     networks:

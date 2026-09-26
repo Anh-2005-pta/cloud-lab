@@ -66,7 +66,7 @@ export default function App() {
   const filtered = students.filter(student =>
     [student.studentId, student.name, student.email].join(' ').toLocaleLowerCase('vi').includes(query.toLocaleLowerCase('vi')))
   return <main>
-    <header className="masthead"><a href="/" className="brand"><span className="brand-mark">S.</span> SỔ SINH VIÊN</a><span className="lab-label">CLOUD LAB / 03</span></header>
+    <header className="masthead"><a href="/" className="brand"><span className="brand-mark">S.</span> SỔ SINH VIÊN</a><span className="lab-label">CLOUD LAB / 04 · V2</span></header>
     <section className="intro"><div><p className="eyebrow">MERN · QUẢN LÝ DỮ LIỆU</p><h1>Mỗi sinh viên,<br /><em>một hành trình.</em></h1><p className="description">Danh sách tập trung. Thông tin rõ ràng.<br />Thêm sinh viên và lưu trực tiếp vào MongoDB Atlas.</p></div><div className="counter"><strong>{loading ? '—' : String(students.length).padStart(2, '0')}</strong><span>SINH VIÊN ĐÃ LƯU</span></div></section>
     {error && <div className="message error" role="alert">{error} <button onClick={refresh} disabled={loading}>Thử tải lại</button></div>}
     {notice && <div className="message success" role="status">{notice}</div>}
