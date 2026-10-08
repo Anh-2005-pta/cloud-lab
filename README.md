@@ -1,4 +1,5 @@
-# Thực hành Điện toán đám mây
+# Cloud Computing Laboratory
 
-Họ và tên: Phan Tuấn Anh
-Mã sinh viên: 236435
+Student Name: Phan Tuấn Anh
+Student ID: 236435
+Class: DH23TIN08
