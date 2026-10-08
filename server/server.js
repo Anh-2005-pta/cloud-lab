@@ -10,9 +10,30 @@ const studentSchema = new mongoose.Schema({
 }, { timestamps: true });
 const Student = mongoose.model("Student", studentSchema);
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  process.env.CLIENT_URL,
+].filter(Boolean);
+app.use(cors({
+  origin(origin, callback) {
+    callback(null, !origin || allowedOrigins.includes(origin));
+  },
+}));
 app.use(express.json({ limit: "16kb" }));
+app.use((req, res, next) => {
+  const startedAt = Date.now();
+  res.on("finish", () => {
+    console.log(`${req.method} ${req.path} ${res.statusCode} ${Date.now() - startedAt}ms`);
+  });
+  next();
+});
 app.get("/api/hello", (req, res) => res.json({ message: "Backend is running" }));
+function health(_req, res) {
+  res.status(200).json({ status: "UP", timestamp: new Date().toISOString(), uptime: process.uptime() });
+}
+app.get("/health", health);
+app.get("/api/health", health);
 
 function studentInput(req, res, next) {
   const { studentId, name, email } = req.body || {};
@@ -53,7 +74,7 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
     await Student.init();
-    console.log("MongoDB connected");
+    console.log("MongoDB connected; Cloud Lab production backend is ready");
     app.listen(PORT, "0.0.0.0", () => console.log(`Server running on port ${PORT}`));
   })
   .catch(() => {

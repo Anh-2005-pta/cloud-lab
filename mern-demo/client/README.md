@@ -21,7 +21,7 @@ npm run dev -- --host 0.0.0.0
 ```
 
 Mở cổng 5173 trong Codespaces Ports. Giữ cổng ở chế độ Private.
-Vite chuyển tiếp `/api` đến backend 5000. Nếu dùng Codespace khác, cập nhật hostname cụ thể trong `vite.config.js`.
+Vite chuyển tiếp `/api` đến backend 5000. Vite lấy hostname Codespace từ biến `CODESPACE_NAME`, không cần sửa `vite.config.js` mỗi lần tạo Codespace.
 Nếu IP Codespace đổi, thêm đúng IP /32 trong Atlas IP Access List.
 
 ## Chức năng
@@ -45,4 +45,4 @@ Bản ghi thử nghiệm dùng email example.com. Có thể đối chiếu tại
 
 ## Lưu ý an toàn
 
-Đây là ứng dụng lab, chưa có xác thực người dùng cho API. Không đưa lên cổng công khai hoặc dùng với dữ liệu thật. `.env`, `node_modules` và `dist` không được commit; chỉ `.env.example` chứa cấu hình trống được đưa lên Git.
+Đây là ứng dụng lab, chưa có xác thực người dùng cho API. Bản Render đã mở API công khai để giảng viên kiểm tra, vì vậy chỉ dùng dữ liệu thử nghiệm, không dùng dữ liệu cá nhân thật. `.env`, `node_modules` và `dist` không được commit; chỉ `.env.example` chứa cấu hình trống được đưa lên Git.
